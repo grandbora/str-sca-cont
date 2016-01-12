@@ -1,7 +1,10 @@
 package MostContestedApi
 
-import com.twitter.finagle.{Http, Service, http}
+import com.twitter.finagle.{Http, Service}
+import com.twitter.finagle.builder.ClientBuilder
+import com.twitter.finagle.http.{Http => HttpCodec, Request, Response, Status}
 import com.twitter.util.{Await, Future}
+
 
 object MostContestedApi extends App {
 
@@ -9,21 +12,35 @@ object MostContestedApi extends App {
 
   val accessToken = sys.props.get("access_token")
     .getOrElse(throw new IllegalArgumentException("access_token must be set as a system property"))
+  val apiHost = "www.strava.com"
+  val apiPort = 443
 
-  val service = new Service[http.Request, http.Response] {
-    def apply(req: http.Request): Future[http.Response] = {
+  val apiRequest = new ApiRequest(apiHost, apiPort, accessToken)
 
-      val resp = req.path match {
-        case Router(id) =>
-          val r = http.Response(req.version, http.Status.Ok)
-          r.setContentString("I received a valid request")
-          r
+  val finagleClient =
+    ClientBuilder()
+      .codec(HttpCodec())
+      .hosts(s"$apiHost:$apiPort")
+      .tls(apiHost)
+      .hostConnectionLimit(10)
+      .build()
 
+  val apiClient = new ApiClient(finagleClient, accessToken, apiRequest.activityDetailRequest)
+
+  val service = new Service[Request, Response] {
+    def apply(req: Request): Future[Response] = {
+
+      req.path match {
+        case Router(activityId) =>
+          apiClient.getActivitySegments(activityId).map {
+            segmentIds =>
+              val r = Response(req.version, Status.Ok)
+              r.setContentString(s"segment ids : $segmentIds")
+              r
+          }
         case _ =>
-          http.Response(req.version, http.Status.BadRequest)
+          Future.value(Response(req.version, Status.BadRequest))
       }
-
-      Future.value(resp)
     }
   }
 
