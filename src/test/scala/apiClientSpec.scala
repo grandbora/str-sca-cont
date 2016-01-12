@@ -40,7 +40,7 @@ class ApiClientSpec extends Specification with Mockito {
       }
 
       "returns the segment ids of given activity" in new Context {
-        val expectedSegmentIds = List(11038522478L, 11038522472L, 11038522481L)
+        val expectedSegmentIds = List(8536675L, 8766845L, 8229076L)
 
         val stravaResp = Response(Status.Ok)
         stravaResp.setContentString(Fixtures.activity)

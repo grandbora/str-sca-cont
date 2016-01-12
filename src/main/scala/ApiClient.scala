@@ -35,8 +35,12 @@ class ApiClient(client: Service[Request, Response],
           case Some(JSONArray(segmentEfforts: List[Any])) =>
             segmentEfforts.collect {
               case JSONObject(segmentEffortAttrs) =>
-                segmentEffortAttrs.get("id") match {
-                  case Some(id) => Try(id.asInstanceOf[Double].toLong).toOption
+                segmentEffortAttrs.get("segment") match {
+                  case Some(JSONObject(segmentAttr)) =>
+                    segmentAttr.get("id") match {
+                      case Some(id) => Try(id.asInstanceOf[Double].toLong).toOption
+                      case _ => None
+                    }
                   case _ => None
                 }
             }.flatten
