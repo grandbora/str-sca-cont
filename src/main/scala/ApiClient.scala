@@ -11,8 +11,6 @@ class ApiClient(client: Service[Request, Response],
                 requestGenerator: Long => Request
                   ) {
 
-  type StringMap = Map[String, Any]
-
   def getActivitySegments(activityId: Long): Future[List[Long]] = {
     val req = requestGenerator(activityId)
 
@@ -30,7 +28,7 @@ class ApiClient(client: Service[Request, Response],
 
   private def parseSegmentIds(jsonString: String): List[Long] = {
     JSON.parseRaw(jsonString) match {
-      case Some(JSONObject(activityAttrs: StringMap)) =>
+      case Some(JSONObject(activityAttrs)) =>
         activityAttrs.get("segment_efforts") match {
           case Some(JSONArray(segmentEfforts: List[Any])) =>
             segmentEfforts.collect {
