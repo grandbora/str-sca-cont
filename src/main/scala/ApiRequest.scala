@@ -1,12 +1,15 @@
 package MostContestedApi
 
-import com.twitter.finagle.http.Request
+import java.net.URL
 
-class ApiRequest(accessToken: String) {
+import com.twitter.finagle.http.{Request, RequestBuilder}
+
+class ApiRequest(host: String, port: Int, accessToken: String) {
 
   def activityDetailRequest(activityId: Long): Request = {
-    val req = Request(s"/api/v3/activities/$activityId")
-    req.headerMap.set("Authorization", s"Bearer $accessToken")
-    req
+    RequestBuilder()
+      .url(new URL("https", host, port, s"/api/v3/activities/$activityId"))
+      .setHeader("Authorization", s"Bearer $accessToken")
+      .buildGet()
   }
 }
