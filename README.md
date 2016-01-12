@@ -8,3 +8,5 @@ todo:
 * add travis ci
 
 * explain specs 2 specifics
+
+* explain why readme is brief :)
