@@ -19,8 +19,11 @@ class ApiClient(client: Service[Request, Response],
     client(req).map {
       resp =>
         resp.status match {
-          case Status.Ok => parseSegmentIds(resp.contentString)
-          case _ => List.empty
+          case Status.Ok =>
+            parseSegmentIds(resp.contentString)
+          case status =>
+            println(s"Api returned $status response")
+            List.empty
         }
     }
   }
