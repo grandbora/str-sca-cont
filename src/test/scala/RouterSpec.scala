@@ -14,6 +14,7 @@ class RouterSpec extends Specification {
         "/most_contested",
         "/most_contested/some-string",
         "most_contested/456",
+        "/most_contested/456/",
         "/most_contested/123/suffix",
         "prefix/most_contested/123"
       )

@@ -10,3 +10,5 @@ todo:
 * explain specs 2 specifics
 
 * explain why readme is brief :)
+
+* explain `access_token` system property

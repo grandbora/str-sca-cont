@@ -7,6 +7,9 @@ object MostContestedApi extends App {
 
   println("starting web server")
 
+  val accessToken = sys.props.get("access_token")
+    .getOrElse(throw new IllegalArgumentException("access_token must be set as a system property"))
+
   val service = new Service[http.Request, http.Response] {
     def apply(req: http.Request): Future[http.Response] = {
 
