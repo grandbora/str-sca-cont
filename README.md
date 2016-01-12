@@ -18,3 +18,5 @@ todo:
 * explain req generator
 
 * explain json fixtures
+
+* apologise for suggesting native json parse classes
