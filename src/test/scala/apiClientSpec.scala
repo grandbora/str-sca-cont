@@ -7,7 +7,7 @@ import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
 
-class StravaClientSpec extends Specification with Mockito {
+class ApiClientSpec extends Specification with Mockito {
 
   trait Context extends Scope {
     val accessToken = "testToken"
@@ -18,7 +18,7 @@ class StravaClientSpec extends Specification with Mockito {
     val requestGenerator: Long => Request =
       (activityId: Long) => request
 
-    val stravaClient = new StravaClient(finagleClientMock, accessToken, requestGenerator)
+    val stravaClient = new ApiClient(finagleClientMock, accessToken, requestGenerator)
   }
 
   "#getActivitySegments" >> {

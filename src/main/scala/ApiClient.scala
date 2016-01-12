@@ -6,9 +6,9 @@ import com.twitter.util.{Future, Try}
 
 import scala.util.parsing.json.{JSON, JSONArray, JSONObject}
 
-class StravaClient(client: Service[Request, Response],
-                   accessToken: String,
-                   requestGenerator: Long => Request
+class ApiClient(client: Service[Request, Response],
+                accessToken: String,
+                requestGenerator: Long => Request
                   ) {
 
   type StringMap = Map[String, Any]
