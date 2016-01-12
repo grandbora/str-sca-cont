@@ -20,3 +20,5 @@ todo:
 * explain json fixtures
 
 * apologise for suggesting native json parse classes
+
+* explain graceful fallbacks
