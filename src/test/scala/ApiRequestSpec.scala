@@ -1,4 +1,4 @@
-package MostContestedApi
+package mostcontestedapi
 
 import org.specs2.mutable.Specification
 

@@ -1,4 +1,4 @@
-package MostContestedApi
+package mostcontestedapi
 
 import com.twitter.finagle.{Http, Service}
 import com.twitter.finagle.builder.ClientBuilder

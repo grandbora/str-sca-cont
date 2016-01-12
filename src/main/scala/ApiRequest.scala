@@ -1,4 +1,4 @@
-package MostContestedApi
+package mostcontestedapi
 
 import java.net.URL
 

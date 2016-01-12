@@ -1,4 +1,4 @@
-package MostContestedApi
+package mostcontestedapi
 
 object Fixtures {
 
