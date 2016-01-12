@@ -12,3 +12,5 @@ todo:
 * explain why readme is brief :)
 
 * explain `access_token` system property
+
+* add main class to sbt.build.
