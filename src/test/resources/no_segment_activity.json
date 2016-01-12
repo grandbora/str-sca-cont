@@ -1,0 +1,307 @@
+{
+  "id": 458685520,
+  "resource_state": 3,
+  "external_id": "B5A323E8-D2AA-4660-A913-FA8845F5A54E",
+  "upload_id": 509769345,
+  "athlete": {
+    "id": 5080128,
+    "resource_state": 1
+  },
+  "name": "Lunch",
+  "distance": 6582.8,
+  "moving_time": 1942,
+  "elapsed_time": 2161,
+  "total_elevation_gain": 49.9,
+  "type": "Run",
+  "start_date": "2015-12-29T13:12:49Z",
+  "start_date_local": "2015-12-29T14:12:49Z",
+  "timezone": "(GMT+01:00) Europe/Berlin",
+  "start_latlng": [
+    52.54,
+    13.41
+  ],
+  "end_latlng": [
+    52.54,
+    13.41
+  ],
+  "location_city": "Berlin",
+  "location_state": "Berlin",
+  "location_country": "Germany",
+  "start_latitude": 52.54,
+  "start_longitude": 13.41,
+  "achievement_count": 5,
+  "kudos_count": 3,
+  "comment_count": 7,
+  "athlete_count": 1,
+  "photo_count": 0,
+  "map": {
+    "id": "a458685520",
+    "polyline": "gbu_IcwypAMTEASH]Bg@VKJ[`AILWP_@He@TUP[J_@Te@Hm@FQFKL{@FUFq@ROHe@F[@YDg@VGRARILy@NMFo@P[P}@PE@EJCRAhCN~B?b@Ft@BnADh@D|CDrA?HIJONCF?TxArNBHOX?XEXCf@DvAAbBJlABzAHTJp@DlA?bAFr@Tx@JZ?d@BNVp@NXd@pAF^BhAAb@B`@@HPPHPRt@Rh@XnANd@Hh@Bf@MD@PFRPTBVA^WhAK~@Cn@B~AU`B@v@GfA@\\B^Pz@Nd@Vh@R`BTp@Bf@J\\FXFrACj@PrAZhF?HMd@CZB^F^@n@B`@A`@Kl@?LH^PTNd@NV@HCPEDUHSDKDg@b@o@NK@i@GMGWCaA[YEUYWUcAk@o@mAi@u@i@kAOQWu@_@{@Kk@M]c@iCCu@CU?o@C[My@YuA?j@L`@DBBEDUFiADM`@URFDFd@nAECIQYYECG@@Ld@j@BFLj@Bp@?d@ELGEEw@IWOOI@Fr@HJGZ?TEN?IJIIFUs@EAAIDQr@?HNF`@@LGVXq@Fa@A_ACQMQ_@QCIDEF@HPBR?Y]{@ASFTPF^b@PFHLd@dAHz@g@zDg@nAMf@UVKDICc@}@CUCm@Yq@Eg@GQMYQOAGOkAEMGu@Bc@E[?g@F@PlADJFEFy@BMFIXSHAJBXVb@ZLVG@OSICEACBCJHHJ@JF\\jA?n@Mf@EECs@GYGIv@aGFCDGFk@R{@Nu@GmAOo@Gg@CaA_@{ABI\\Cb@WfAeAf@m@TOv@[RMfA}@TWr@e@DOKe@Ci@FQXUDQ?UCSo@uA[}@Kg@MYWqABUAIY{AWs@WsAQi@Se@Ka@CK@oCEk@WkAMUKyAQu@DqAHc@Bw@Gw@AmAMkBEIO@]{N?RFp@Aw@O}@Ce@Oq@@sCIcAAmAM{@Cy@Ik@@mB@IJM`@MfAk@`ASb@OXm@JM^OZSNEF?FADDR@NEXQVADAzAwA^KLADHJ?ZITCNQJGZIPDZEZSX[RMJMTOj@k@^MVOJEJBJCFG",
+    "resource_state": 3,
+    "summary_polyline": "gbu_IcwypAm]tObBvv@tHvc@_AxP~B~Kb@xV|@|BoIl@kE_FcDqJ_AyIlCf@w@q@|@~Cw@o@B`CU}A`BB{@gExA~A`@lDuB|G}CsLAgB^zAjAiBxA~Ee@aApBkLcAcIhLoI\\yC{FgUkAyLyBar@p^sP"
+  },
+  "trainer": false,
+  "commute": false,
+  "manual": false,
+  "private": false,
+  "flagged": false,
+  "gear_id": null,
+  "average_speed": 3.39,
+  "max_speed": 6.6,
+  "elev_high": 66.7,
+  "elev_low": 44.0,
+  "total_photo_count": 0,
+  "has_kudoed": false,
+  "workout_type": 0,
+  "description": "",
+  "calories": 0,
+  "segment_efforts": [],
+  "splits_metric": [
+    {
+      "distance": 1051.8,
+      "elapsed_time": 306,
+      "elevation_difference": -1.4,
+      "moving_time": 306,
+      "split": 1
+    },
+    {
+      "distance": 948.9,
+      "elapsed_time": 289,
+      "elevation_difference": 7.8,
+      "moving_time": 289,
+      "split": 2
+    },
+    {
+      "distance": 999.8,
+      "elapsed_time": 290,
+      "elevation_difference": 8.2,
+      "moving_time": 290,
+      "split": 3
+    },
+    {
+      "distance": 1001.4,
+      "elapsed_time": 441,
+      "elevation_difference": -5.7,
+      "moving_time": 408,
+      "split": 4
+    },
+    {
+      "distance": 1001.9,
+      "elapsed_time": 421,
+      "elevation_difference": -10.6,
+      "moving_time": 312,
+      "split": 5
+    },
+    {
+      "distance": 996.4,
+      "elapsed_time": 258,
+      "elevation_difference": 2.0,
+      "moving_time": 258,
+      "split": 6
+    },
+    {
+      "distance": 582.6,
+      "elapsed_time": 156,
+      "elevation_difference": -0.3,
+      "moving_time": 156,
+      "split": 7
+    }
+  ],
+  "splits_standard": [
+    {
+      "distance": 1611.6,
+      "elapsed_time": 460,
+      "elevation_difference": 0.3,
+      "moving_time": 460,
+      "split": 1
+    },
+    {
+      "distance": 1607.6,
+      "elapsed_time": 500,
+      "elevation_difference": 10.0,
+      "moving_time": 500,
+      "split": 2
+    },
+    {
+      "distance": 1610.0,
+      "elapsed_time": 735,
+      "elevation_difference": -10.7,
+      "moving_time": 599,
+      "split": 3
+    },
+    {
+      "distance": 1611.7,
+      "elapsed_time": 427,
+      "elevation_difference": 3.0,
+      "moving_time": 421,
+      "split": 4
+    },
+    {
+      "distance": 141.9,
+      "elapsed_time": 39,
+      "elevation_difference": -2.6,
+      "moving_time": 39,
+      "split": 5
+    }
+  ],
+  "best_efforts": [
+    {
+      "id": 1163223161,
+      "resource_state": 2,
+      "name": "400m",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 84,
+      "moving_time": 85,
+      "start_date": "2015-12-29T13:44:23Z",
+      "start_date_local": "2015-12-29T14:44:23Z",
+      "distance": 400,
+      "start_index": 1340,
+      "end_index": 1394,
+      "pr_rank": null,
+      "achievements": []
+    },
+    {
+      "id": 1163223162,
+      "resource_state": 2,
+      "name": "1/2 mile",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 193,
+      "moving_time": 194,
+      "start_date": "2015-12-29T13:44:23Z",
+      "start_date_local": "2015-12-29T14:44:23Z",
+      "distance": 805,
+      "start_index": 1340,
+      "end_index": 1497,
+      "pr_rank": null,
+      "achievements": []
+    },
+    {
+      "id": 1163223163,
+      "resource_state": 2,
+      "name": "1k",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 245,
+      "moving_time": 246,
+      "start_date": "2015-12-29T13:44:23Z",
+      "start_date_local": "2015-12-29T14:44:23Z",
+      "distance": 1000,
+      "start_index": 1340,
+      "end_index": 1545,
+      "pr_rank": null,
+      "achievements": []
+    },
+    {
+      "id": 1163223164,
+      "resource_state": 2,
+      "name": "1 mile",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 419,
+      "moving_time": 419,
+      "start_date": "2015-12-29T13:41:21Z",
+      "start_date_local": "2015-12-29T14:41:21Z",
+      "distance": 1609,
+      "start_index": 1181,
+      "end_index": 1539,
+      "pr_rank": null,
+      "achievements": []
+    },
+    {
+      "id": 1163223165,
+      "resource_state": 2,
+      "name": "2 mile",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 950,
+      "moving_time": 924,
+      "start_date": "2015-12-29T13:13:06Z",
+      "start_date_local": "2015-12-29T14:13:06Z",
+      "distance": 3219,
+      "start_index": 7,
+      "end_index": 781,
+      "pr_rank": null,
+      "achievements": []
+    },
+    {
+      "id": 1163223166,
+      "resource_state": 2,
+      "name": "5k",
+      "activity": {
+        "id": 458685520,
+        "resource_state": 1
+      },
+      "athlete": {
+        "id": 5080128,
+        "resource_state": 1
+      },
+      "elapsed_time": 1704,
+      "moving_time": 1486,
+      "start_date": "2015-12-29T13:19:29Z",
+      "start_date_local": "2015-12-29T14:19:29Z",
+      "distance": 5000,
+      "start_index": 316,
+      "end_index": 1514,
+      "pr_rank": null,
+      "achievements": []
+    }
+  ],
+  "partner_logo_url": null,
+  "photos": {
+    "primary": null,
+    "count": 0
+  },
+  "similar_activities": {
+    "effort_count": 1,
+    "average_speed": 3.3897013388259527,
+    "min_average_speed": 3.3897013388259527,
+    "mid_average_speed": 3.3897013388259527,
+    "max_average_speed": 3.3897013388259527,
+    "pr_rank": null,
+    "frequency_milestone": null,
+    "trend": {
+      "speeds": [
+        3.3897013388259527
+      ],
+      "current_activity_index": 0,
+      "min_speed": 3.3897013388259527,
+      "mid_speed": 3.3897013388259527,
+      "max_speed": 3.3897013388259527,
+      "direction": 0
+    },
+    "resource_state": 2
+  },
+  "embed_token": "ade9e1d56ca0a4e60d040008d0cd7b07f8827bb7"
+}

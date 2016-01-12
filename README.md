@@ -14,3 +14,7 @@ todo:
 * explain `access_token` system property
 
 * add main class to sbt.build.
+
+* explain req generator
+
+* explain json fixtures
