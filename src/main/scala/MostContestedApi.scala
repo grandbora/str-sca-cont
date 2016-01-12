@@ -9,8 +9,17 @@ object MostContestedApi extends App {
 
   val service = new Service[http.Request, http.Response] {
     def apply(req: http.Request): Future[http.Response] = {
-      val resp = http.Response(req.version, http.Status.Ok)
-      resp.setContentString("I am alive as a web server")
+
+      val resp = req.path match {
+        case Router(id) =>
+          val r = http.Response(req.version, http.Status.Ok)
+          r.setContentString("I received a valid request")
+          r
+
+        case _ =>
+          http.Response(req.version, http.Status.BadRequest)
+      }
+
       Future.value(resp)
     }
   }
