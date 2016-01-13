@@ -2,6 +2,12 @@
 
 [![Build Status](https://travis-ci.org/grandbora/str-sca-cont.svg?branch=master)](https://travis-ci.org/grandbora/str-sca-cont)
 
+Start the app:
+`sbt -Daccess_token={{your_access_token}} run`
+
+Run the tests:
+`sbt test`
+
 
 todo:
 
