@@ -21,7 +21,7 @@ object MostContestedApi extends App {
       .codec(HttpCodec())
       .hosts(s"$apiHost:$apiPort")
       .tls(apiHost)
-      .hostConnectionLimit(10)
+      .hostConnectionLimit(100)
       .build()
 
   val apiClient = new ApiClient(
