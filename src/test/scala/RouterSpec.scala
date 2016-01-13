@@ -6,7 +6,7 @@ class RouterSpec extends Specification {
 
   "#apply" >> {
 
-    "any non matching path should return None" >> {
+    "returns None when path doesn't match" >> {
       val paths = List(
         "/a-path",
         "/anotherPath",
@@ -25,7 +25,16 @@ class RouterSpec extends Specification {
       }
     }
 
-    "any matching path should return activityId" >> {
+    "returns None when activity id is greater than a Long" >> {
+      val path = "/most_contested/123324453464545654667868979764563423123123123324"
+
+      path match {
+        case p@Router(activityId) => ko(s"Path $p shouldn't have been matched")
+        case _ => ok
+      }
+    }
+
+    "returns activityId when path is matched" >> {
       val paths = Map(
         "/most_contested/123" -> 123L,
         "/most_contested/123456789" -> 123456789L,

@@ -1,5 +1,7 @@
 package mostcontestedapi
 
+import com.twitter.util.Try
+
 object Router {
 
   private val PathPattern = """/most_contested/(\d+)""".r
@@ -7,7 +9,7 @@ object Router {
   def unapply(path: String): Option[Long] = {
 
     path match {
-      case PathPattern(a) =>Some(a.toLong)
+      case PathPattern(a) =>Try(a.toLong).toOption
       case _ => None
     }
   }
