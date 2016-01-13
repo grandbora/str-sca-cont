@@ -83,5 +83,3 @@ class ApiClient(client: Service[Request, Response],
     }
   }
 }
-
-case class SegmentIdEffortPair(segmentId: Long, effortCount: Long)
