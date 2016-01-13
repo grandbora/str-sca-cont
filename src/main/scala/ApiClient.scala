@@ -50,19 +50,26 @@ class ApiClient(client: Service[Request, Response],
   }
 
   def getSegmentEffortCounts(segmentIds: List[Long]): Future[List[SegmentIdEffortPair]] = {
-    val req = segmentRequest(segmentIds.head)
 
-    client(req).map {
-      resp =>
-        resp.status match {
+    val segmentQueries = segmentIds.map {
+      segmentId =>
+        val req = segmentRequest(segmentId)
+        client(req).map(segmentId -> _)
+    }
+
+    Future.collect(segmentQueries).map(_.toList.map {
+      case (segmentId, resp) =>
+        val effortCount = resp.status match {
           case Status.Ok =>
-            val effortCount = parseEffortCount(resp.contentString)
-            List(SegmentIdEffortPair(segmentIds.head, effortCount))
+            parseEffortCount(resp.contentString)
+
           case status =>
             println(s"Api returned $status response for segment request")
-            List(SegmentIdEffortPair(segmentIds.head, 0))
+            0
         }
-    }
+
+        SegmentIdEffortPair(segmentId, effortCount)
+    })
   }
 
   private def parseEffortCount(jsonString: String): Long = {

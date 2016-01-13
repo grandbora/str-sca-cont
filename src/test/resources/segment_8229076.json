@@ -1,0 +1,46 @@
+{
+  "id": 8229076,
+  "resource_state": 3,
+  "name": "Flakturm, Abstieg Nord",
+  "activity_type": "Run",
+  "distance": 427.9,
+  "average_grade": -6.1,
+  "maximum_grade": 0.0,
+  "elevation_high": 86.0,
+  "elevation_low": 60.0,
+  "start_latlng": [
+    52.547213,
+    13.385054
+  ],
+  "end_latlng": [
+    52.547877,
+    13.385288
+  ],
+  "start_latitude": 52.547213,
+  "start_longitude": 13.385054,
+  "end_latitude": 52.547877,
+  "end_longitude": 13.385288,
+  "climb_category": 0,
+  "city": "Berlin",
+  "state": "Berlin",
+  "country": "Germany",
+  "private": false,
+  "hazardous": false,
+  "starred": false,
+  "created_at": "2014-09-27T19:27:06Z",
+  "updated_at": "2016-01-11T09:04:40Z",
+  "total_elevation_gain": 0.0,
+  "map": {
+    "id": "s8229076",
+    "polyline": "acv_IqgupATPNX@ZBa@MaAK[a@m@B_@TJl@d@\\t@Jz@A\\IhAUfAQVWFSCMU_B_EWaA",
+    "resource_state": 3
+  },
+  "effort_count": 367,
+  "athlete_count": 90,
+  "star_count": 1,
+  "athlete_segment_stats": {
+    "effort_count": 1,
+    "pr_elapsed_time": 402,
+    "pr_date": "2015-12-29"
+  }
+}

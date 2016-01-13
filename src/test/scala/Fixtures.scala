@@ -6,9 +6,9 @@ object Fixtures {
 
   val activity = readFixture("activity")
 
-  val segment = readFixture("segment")
+  val segment = readFixture("segment_8536675")
 
-  private def readFixture(fileName: String) =
+  def readFixture(fileName: String) =
     scala.io.Source.fromFile(s"src/test/resources/$fileName.json").mkString
 
 }

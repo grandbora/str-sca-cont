@@ -13,7 +13,7 @@ class ApiClientSpec extends Specification with Mockito {
     val accessToken = "testToken"
     val finagleClientMock = smartMock[Service[Request, Response]]
 
-    val unusedRequest = (activityId: Long) => ???
+    val unusedRequest = (id: Long) => ???
   }
 
   "#getActivitySegments" >> {
@@ -57,19 +57,19 @@ class ApiClientSpec extends Specification with Mockito {
 
   "#getSegmentEffortCounts" >> {
 
-    trait SegmentContext extends Context {
-
-      val segmentId = 324L
-      val request = Request(s"/api/v3/segments/$segmentId")
-      val segmentRequest: Long => Request =
-        (activityId: Long) => request
-
-      val stravaClient = new ApiClient(finagleClientMock, accessToken, unusedRequest, segmentRequest)
-    }
-
     "single segment" >> {
 
-      "returns 0 when finagle client returns a non 200 response" in new SegmentContext {
+      trait SingleSegmentContext extends Context {
+
+        val segmentId = 324L
+        val request = Request(s"/api/v3/segments/$segmentId")
+        val segmentRequest: Long => Request =
+          (segmentId: Long) => request
+
+        val stravaClient = new ApiClient(finagleClientMock, accessToken, unusedRequest, segmentRequest)
+      }
+
+      "returns 0 when finagle client returns a non 200 response" in new SingleSegmentContext {
 
         val stravaResp = Response(Status.InternalServerError)
         finagleClientMock.apply(request) returns Future.value(stravaResp)
@@ -80,7 +80,7 @@ class ApiClientSpec extends Specification with Mockito {
         result.head.effortCount ==== 0L
       }
 
-      "returns effort count when finagle client returns a 200 response" in new SegmentContext {
+      "returns effort count when finagle client returns a 200 response" in new SingleSegmentContext {
 
         val stravaResp = Response(Status.Ok)
         stravaResp.setContentString(Fixtures.segment)
@@ -90,6 +90,48 @@ class ApiClientSpec extends Specification with Mockito {
         result must haveSize(1)
         result.head.segmentId ==== 324L
         result.head.effortCount ==== 663L
+      }
+    }
+
+    "multiple segments" >> {
+
+      "returns each segment's effort count" in new Context {
+
+        def makeRequest(id: Long) = Request(s"/api/v3/segments/$id")
+
+        val nonExistentSegment = 564556L
+        val segmentIds = List(8229076L, 8766845L, nonExistentSegment, 8536675L)
+        val expectedEffortCounts = List(367L, 1654L, 0L, 663L)
+
+        val segmentIdsToEffortCounts = segmentIds.zip(expectedEffortCounts).toMap
+        val segmentIdsToRequest = segmentIds.map(id => id -> makeRequest(id)).toMap
+
+        val segmentRequest = (id: Long) => segmentIdsToRequest(id)
+        val stravaClient = new ApiClient(finagleClientMock, accessToken, unusedRequest, segmentRequest)
+
+
+        segmentIds.foreach {
+          segmentId =>
+
+            val stravaResp = if (segmentId == nonExistentSegment) {
+              Response(Status.NotFound)
+            } else {
+              val r = Response(Status.Ok)
+              r.setContentString(Fixtures.readFixture(s"segment_$segmentId"))
+              r
+            }
+
+            finagleClientMock(segmentIdsToRequest(segmentId)) returns Future.value(stravaResp)
+        }
+
+        val result = Await.result(stravaClient.getSegmentEffortCounts(segmentIdsToEffortCounts.keys.toList))
+        result must haveSize(4)
+        result.map(_.segmentId).toSet ==== segmentIdsToEffortCounts.keySet
+
+        result.map {
+          case SegmentIdEffortPair(segmentId, effortCount) =>
+            segmentIdsToEffortCounts(segmentId) ==== effortCount
+        }
       }
     }
   }
