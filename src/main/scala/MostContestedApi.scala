@@ -1,8 +1,8 @@
 package mostcontestedapi
 
-import com.twitter.finagle.{Http, Service}
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.http.{Http => HttpCodec, Request, Response, Status}
+import com.twitter.finagle.{Http, Service}
 import com.twitter.util.{Await, Future}
 
 
@@ -25,18 +25,26 @@ object MostContestedApi extends App {
       .hostConnectionLimit(10)
       .build()
 
-  val apiClient = new ApiClient(finagleClient, accessToken, apiRequest.activityDetailRequest, ???)
+  val apiClient = new ApiClient(
+    finagleClient,
+    accessToken,
+    apiRequest.activityRequest,
+    apiRequest.segmentRequest)
 
   val service = new Service[Request, Response] {
     def apply(req: Request): Future[Response] = {
 
       req.path match {
         case Router(activityId) =>
-          apiClient.getActivitySegments(activityId).map {
+          apiClient.getActivitySegments(activityId).flatMap {
             segmentIds =>
-              val r = Response(req.version, Status.Ok)
-              r.setContentString(s"segment ids : $segmentIds")
-              r
+              apiClient.getSegmentEffortCounts(segmentIds).map {
+                segmentEffortCounts =>
+                  val SegmentIdEffortPair(segmentId, effortCount) = segmentEffortCounts.head
+                  val r = Response(req.version, Status.Ok)
+                  r.setContentString(s"segment id : $segmentId effort count: $effortCount")
+                  r
+              }
           }
         case _ =>
           Future.value(Response(req.version, Status.BadRequest))

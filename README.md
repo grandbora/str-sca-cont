@@ -24,3 +24,5 @@ todo:
 * explain graceful fallbacks
 
 * skipped test cases for cases such as api returns invalid data and etc.
+
+* add logging
