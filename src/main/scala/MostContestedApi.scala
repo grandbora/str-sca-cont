@@ -5,10 +5,9 @@ import com.twitter.finagle.http.{Http => HttpCodec, Request, Response, Status}
 import com.twitter.finagle.{Http, Service}
 import com.twitter.util.{Await, Future}
 
-
 object MostContestedApi extends App {
 
-  println("starting web server")
+  println("initializing app")
 
   val accessToken = sys.props.get("access_token")
     .getOrElse(throw new IllegalArgumentException("access_token must be set as a system property"))
@@ -31,27 +30,21 @@ object MostContestedApi extends App {
     apiRequest.activityRequest,
     apiRequest.segmentRequest)
 
+  val controller = new Controller(apiClient)
+
   val service = new Service[Request, Response] {
     def apply(req: Request): Future[Response] = {
 
       req.path match {
         case Router(activityId) =>
-          apiClient.getActivitySegments(activityId).flatMap {
-            segmentIds =>
-              apiClient.getSegmentEffortCounts(segmentIds).map {
-                segmentEffortCounts =>
-                  val SegmentIdEffortPair(segmentId, effortCount) = segmentEffortCounts.head
-                  val r = Response(req.version, Status.Ok)
-                  r.setContentString(s"segment id : $segmentId effort count: $effortCount")
-                  r
-              }
-          }
+          controller.get(activityId)
         case _ =>
           Future.value(Response(req.version, Status.BadRequest))
       }
     }
   }
 
+  println("starting serving")
   val server = Http.serve(":8080", service)
   Await.ready(server)
 }
