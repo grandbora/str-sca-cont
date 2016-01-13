@@ -25,7 +25,7 @@ object MostContestedApi extends App {
       .hostConnectionLimit(10)
       .build()
 
-  val apiClient = new ApiClient(finagleClient, accessToken, apiRequest.activityDetailRequest)
+  val apiClient = new ApiClient(finagleClient, accessToken, apiRequest.activityDetailRequest, ???)
 
   val service = new Service[Request, Response] {
     def apply(req: Request): Future[Response] = {

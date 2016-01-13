@@ -8,11 +8,12 @@ import scala.util.parsing.json.{JSON, JSONArray, JSONObject}
 
 class ApiClient(client: Service[Request, Response],
                 accessToken: String,
-                requestGenerator: Long => Request
-                  ) {
+                activityRequest: Long => Request,
+                segmentRequest: Long => Request
+               ) {
 
   def getActivitySegments(activityId: Long): Future[List[Long]] = {
-    val req = requestGenerator(activityId)
+    val req = activityRequest(activityId)
 
     client(req).map {
       resp =>
@@ -20,7 +21,7 @@ class ApiClient(client: Service[Request, Response],
           case Status.Ok =>
             parseSegmentIds(resp.contentString)
           case status =>
-            println(s"Api returned $status response")
+            println(s"Api returned $status response for activity request")
             List.empty
         }
     }
@@ -47,4 +48,33 @@ class ApiClient(client: Service[Request, Response],
       case _ => List.empty
     }
   }
+
+  def getSegmentEffortCounts(segmentIds: List[Long]): Future[List[SegmentIdEffortPair]] = {
+    val req = segmentRequest(segmentIds.head)
+
+    client(req).map {
+      resp =>
+        resp.status match {
+          case Status.Ok =>
+            val effortCount = parseEffortCount(resp.contentString)
+            List(SegmentIdEffortPair(segmentIds.head, effortCount))
+          case status =>
+            println(s"Api returned $status response for segment request")
+            List(SegmentIdEffortPair(segmentIds.head, 0))
+        }
+    }
+  }
+
+  private def parseEffortCount(jsonString: String): Long = {
+    JSON.parseRaw(jsonString) match {
+      case Some(JSONObject(activityAttrs)) =>
+        activityAttrs.get("effort_count") match {
+          case Some(effortCount) => Try(effortCount.asInstanceOf[Double].toLong).getOrElse(0)
+          case _ => 0
+        }
+      case _ => 0
+    }
+  }
 }
+
+case class SegmentIdEffortPair(segmentId: Long, effortCount: Long)
