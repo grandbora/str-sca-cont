@@ -2,20 +2,26 @@
 
 [![Build Status](https://travis-ci.org/grandbora/str-sca-cont.svg?branch=master)](https://travis-ci.org/grandbora/str-sca-cont)
 
-Start the app:
+#### Start the service:
+
 `sbt -Daccess_token={{your_access_token}} run`
 
-Run the tests:
+#### Run the tests
+
 `sbt test`
 
 
 todo:
 
-* explain specs 2 specifics
+* explain why readme is brief :) ++++++
 
-* explain why readme is brief :)
+* explain logic ++++++
 
 * explain `access_token` system property
+
+* no framework
+
+* explain specs 2 specifics
 
 * explain req generator
 
