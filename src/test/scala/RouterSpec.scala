@@ -3,10 +3,8 @@ package mostcontestedapi
 import org.specs2.mutable.Specification
 
 class RouterSpec extends Specification {
-
-  "#apply" >> {
-
-    "returns None when path doesn't match" >> {
+  
+    "doesn't match, non-matching paths" >> {
       val paths = List(
         "/a-path",
         "/anotherPath",
@@ -25,7 +23,7 @@ class RouterSpec extends Specification {
       }
     }
 
-    "returns None when activity id is greater than a Long" >> {
+    "doersn't match when activity id is greater than a Long" >> {
       val path = "/most_contested/123324453464545654667868979764563423123123123324"
 
       path match {
@@ -49,5 +47,4 @@ class RouterSpec extends Specification {
 
       ok
     }
-  }
 }
