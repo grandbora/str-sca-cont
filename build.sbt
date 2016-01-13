@@ -9,3 +9,5 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-core" % "3.7" % "test",
   "org.specs2" %% "specs2-mock" % "3.7" % "test"
 )
+
+mainClass := Some("mostcontestedapi.MostContestedApi")
