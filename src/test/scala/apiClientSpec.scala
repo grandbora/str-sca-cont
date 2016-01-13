@@ -22,14 +22,17 @@ class ApiClientSpec extends Specification with Mockito {
       val activityId = 123L
       val request = Request(s"/api/v3/activities/$activityId")
       val activityRequest: Long => Request =
-        (activityId: Long) => request
+        (id: Long) => {
+          id ==== activityId
+          request
+        }
 
       val stravaClient = new ApiClient(finagleClientMock, accessToken, activityRequest, unusedRequest)
     }
 
     "returns empty list when finagle client returns a non 200 response" in new ActivityContext {
       finagleClientMock(request) returns Future.value(Response(Status.BadRequest))
-      Await.result(stravaClient.getActivitySegments(1L)) ==== List.empty
+      Await.result(stravaClient.getActivitySegments(activityId)) ==== List.empty
     }
 
     "finagle client returns a 200 response" >> {
@@ -40,7 +43,7 @@ class ApiClientSpec extends Specification with Mockito {
 
         finagleClientMock(request) returns Future.value(stravaResp)
 
-        Await.result(stravaClient.getActivitySegments(1L)) ==== List.empty
+        Await.result(stravaClient.getActivitySegments(activityId)) ==== List.empty
       }
 
       "returns the segment ids of given activity" in new ActivityContext {
@@ -64,7 +67,10 @@ class ApiClientSpec extends Specification with Mockito {
         val segmentId = 324L
         val request = Request(s"/api/v3/segments/$segmentId")
         val segmentRequest: Long => Request =
-          (segmentId: Long) => request
+          (id: Long) => {
+            id ==== segmentId
+            request
+          }
 
         val stravaClient = new ApiClient(finagleClientMock, accessToken, unusedRequest, segmentRequest)
       }
