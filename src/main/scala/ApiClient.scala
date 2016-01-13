@@ -18,11 +18,8 @@ class ApiClient(client: Service[Request, Response],
     apiCallWithLogging(req).map {
       resp =>
         resp.status match {
-          case Status.Ok =>
-            parseSegmentIds(resp.contentString)
-          case status =>
-            println(s"Api returned $status response for activity request")
-            List.empty
+          case Status.Ok => parseSegmentIds(resp.contentString)
+          case status => List.empty
         }
     }
   }
@@ -63,9 +60,7 @@ class ApiClient(client: Service[Request, Response],
           case Status.Ok =>
             parseEffortCount(resp.contentString)
 
-          case status =>
-            println(s"Api returned $status response for segment request")
-            0
+          case status => 0
         }
 
         SegmentIdEffortPair(segmentId, effortCount)
