@@ -5,8 +5,6 @@
 
 todo:
 
-* add travis ci
-
 * explain specs 2 specifics
 
 * explain why readme is brief :)
@@ -24,5 +22,3 @@ todo:
 * explain graceful fallbacks
 
 * skipped test cases for cases such as api returns invalid data and etc.
-
-* add logging

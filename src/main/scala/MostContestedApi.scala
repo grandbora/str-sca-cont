@@ -44,7 +44,7 @@ object MostContestedApi extends App {
     }
   }
 
-  println("starting serving")
   val server = Http.serve(":8080", service)
+  println("server started")
   Await.ready(server)
 }

@@ -15,7 +15,7 @@ class ApiClient(client: Service[Request, Response],
   def getActivitySegments(activityId: Long): Future[List[Long]] = {
     val req = activityRequest(activityId)
 
-    client(req).map {
+    apiCallWithLogging(req).map {
       resp =>
         resp.status match {
           case Status.Ok =>
@@ -54,7 +54,7 @@ class ApiClient(client: Service[Request, Response],
     val segmentQueries = segmentIds.map {
       segmentId =>
         val req = segmentRequest(segmentId)
-        client(req).map(segmentId -> _)
+        apiCallWithLogging(req).map(segmentId -> _)
     }
 
     Future.collect(segmentQueries).map(_.toList.map {
@@ -80,6 +80,17 @@ class ApiClient(client: Service[Request, Response],
           case _ => 0
         }
       case _ => 0
+    }
+  }
+
+  private def apiCallWithLogging(req: Request): Future[Response] = {
+    println(s"making an api call to ${req.path} endpoint")
+    client(req).onSuccess {
+      resp =>
+        println(s"api returned ${resp.status} response from ${req.path} endpoint")
+    }.onFailure {
+      ex =>
+        println(s"api failed to respond on ${req.path} endpoint. Reason ${ex.getMessage}")
     }
   }
 }
